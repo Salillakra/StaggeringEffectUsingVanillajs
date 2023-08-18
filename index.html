@@ -1,0 +1,81 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <script src="https://cdn.tailwindcss.com"></script>
+    <title>Document</title>
+    <style>
+      @keyframes slideIn {
+        0% {
+          opacity: 0;
+          transform: translateX(-100px);
+        }
+        25% {
+          transform: translateX(-50px);
+        }
+        50% {
+          transform: translateX(-25px);
+        }
+        100% {
+          opacity: 1;
+          transform: translateX(0);
+        }
+      }
+
+      .slide-animation {
+        animation-name: slideIn;
+        animation-duration: 1s;
+        animation-timing-function: cubic-bezier(0.68, -0.55, 0.265, 1.55);
+        animation-fill-mode: both;
+      }
+    </style>
+  </head>
+  <body>
+    <button
+      onclick="toggle()"
+      class="fixed bg-green-200 py-1 px-2 m-1 rounded-xl">
+      animate
+    </button>
+    <div class="h-screen w-full bg-slate-500 flex justify-center">
+      <div class="w-[20rem] h-fit flex items-center flex-col">
+        <div
+          id="element1"
+          class="w-full animate rounded-xl my-4 h-10 bg-green-500"></div>
+        <div
+          id="element2"
+          class="w-full animate rounded-xl my-4 h-10 bg-pink-500"></div>
+        <div
+          id="element3"
+          class="w-full animate rounded-xl my-4 h-10 bg-blue-500"></div>
+        <div
+          id="element4"
+          class="w-full animate rounded-xl my-4 h-10 bg-red-500"></div>
+        <div
+          id="element5"
+          class="w-full animate rounded-xl my-4 h-10 bg-yellow-500"></div>
+        <div
+          id="element6"
+          class="w-full animate rounded-xl my-4 h-10 bg-black"></div>
+        <div
+          id="element7"
+          class="w-full animate rounded-xl my-4 h-10 bg-white"></div>
+        <div
+          id="element8"
+          class="w-full animate rounded-xl my-4 h-10 bg-orange-500"></div>
+      </div>
+    </div>
+  </body>
+  <script>
+    function toggle() {
+      const elements = document.getElementsByClassName("animate");
+      Array.from(elements).forEach((element, index) => {
+        element.classList.remove("slide-animation");
+        setTimeout(() => {
+          element.classList.add("slide-animation");
+          element.style.animationDelay = index * 0.095 + "s";
+        }, 10); // Introduce a small delay (in milliseconds) between removing and adding the class
+      });
+    }
+  </script>
+</html>
